@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: hatch-bot
+    env: node
+    plan: free
+    buildCommand: |
+      npm install
+      npx prisma generate
+      npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXTAUTH_URL
+        sync: true
+      - key: NEXTAUTH_SECRET
+        sync: true
+      - key: MONGODB_URI
+        sync: true
+      - key: DISCORD_CLIENT_ID
+        sync: true
+      - key: DISCORD_CLIENT_SECRET
+        sync: true
+      - key: HATCH_API_BASE
+        sync: true
